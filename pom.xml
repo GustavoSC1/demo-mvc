@@ -34,6 +34,39 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		
+		<!-- Tem como responsabilidade vincular a URL da pagina com a dependencia do projeto. A partir dela
+		a URL que tem na página consegue importar os arquivos dentro do .jar -->
+		<dependency>
+    		<groupId>org.webjars</groupId>
+   			<artifactId>webjars-locator-core</artifactId>
+    	</dependency>
+		
+		<dependency>
+	    	<groupId>org.webjars</groupId>
+	    	<artifactId>bootstrap</artifactId>
+	    	<version>4.5.0</version>
+		</dependency>
+		
+			
+		<dependency>
+		    <groupId>org.webjars.bower</groupId>
+		    <artifactId>open-iconic</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.webjars</groupId>
+    		<artifactId>jquery</artifactId>
+    		<version>3.5.1</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>org.webjars.bower</groupId>
+    		<artifactId>jquery-mask-plugin</artifactId>
+    		<version>1.14.15</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
