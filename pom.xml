@@ -48,7 +48,7 @@
 	    	<version>4.5.0</version>
 		</dependency>
 		
-			
+		<!-- Biblioteca que possui ícones -->
 		<dependency>
 		    <groupId>org.webjars.bower</groupId>
 		    <artifactId>open-iconic</artifactId>
