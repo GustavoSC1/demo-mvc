@@ -18,4 +18,6 @@ void salvar(Funcionario funcionario);
 
 	List<Funcionario> buscarPorNome(String nome);
 
+	List<Funcionario> buscarPorCargo(Long id);
+
 }
