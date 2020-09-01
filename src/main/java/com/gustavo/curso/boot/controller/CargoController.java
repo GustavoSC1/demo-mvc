@@ -2,9 +2,12 @@ package com.gustavo.curso.boot.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,7 +43,12 @@ public class CargoController {
 	
 	@PostMapping("/salvar")
 	// No Thymeleaf não é necessário usar o @ModelAttribute antes de Cargo cargo, mas no JSP precisa.
-	public String salvar(Cargo cargo, RedirectAttributes attr) {
+	public String salvar(@Valid Cargo cargo, BindingResult result, RedirectAttributes attr) {
+		
+		if(result.hasErrors()) {
+			return "/cargo/cadastro";
+		}
+		
 		cargoService.salvar(cargo);
 		attr.addFlashAttribute("success", "Cargo inserido com sucesso.");
 		return "redirect:/cargos/cadastrar";
@@ -53,7 +61,12 @@ public class CargoController {
 	}
 	
 	@PostMapping("/editar")
-	public String editar(Cargo cargo, RedirectAttributes attr) {
+	public String editar(@Valid Cargo cargo, BindingResult result, RedirectAttributes attr) {
+		
+		if(result.hasErrors()) {
+			return "/cargo/cadastro";
+		}
+		
 		cargoService.editar(cargo);
 		attr.addFlashAttribute("success", "Registro atualizado com sucesso.");
 		return "redirect:/cargos/cadastrar";
