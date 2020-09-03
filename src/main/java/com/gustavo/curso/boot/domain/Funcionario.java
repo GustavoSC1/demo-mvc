@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -15,14 +20,20 @@ import org.springframework.format.annotation.NumberFormat.Style;
 @Table(name = "FUNCIONARIOS")
 public class Funcionario extends AbstractEntity<Long> {
 	
+	@NotBlank
+	@Size(max = 255, min = 3)
 	@Column(nullable = false, unique = true)
 	private String nome;
 	
+	@NotNull	
 	//É preciso informar o tipo de dados(CURRENCY = moeda)
 	@NumberFormat(style = Style.CURRENCY, pattern = "#,##0.00")
 	@Column(nullable = false, columnDefinition = "DECIMAL(7,2) DEFAULT 0.00" )
 	private BigDecimal salario;
 	
+	@NotNull
+	//A data deve ser anterior ou igual ao dia de hoje
+	@PastOrPresent(message = "{PastOrPresent.funcionario.dataEntrada}")
 	//Informa que será somente a data, sem a hora
 	@DateTimeFormat(iso = ISO.DATE)
 	@Column(name = "data_entrada", nullable = false, columnDefinition = "DATE")
@@ -32,10 +43,13 @@ public class Funcionario extends AbstractEntity<Long> {
 	@Column(name = "data_saida", nullable = true, columnDefinition = "DATE")
 	private LocalDate dataSaida;
 	
+	//Esse objeto deve ser validado conforme as anotações de validacao em endereco
+	@Valid
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "endereco_id_fk")
 	private Endereco endereco;
 	
+	@NotNull(message = "{NotNull.funcionario.cargo}")
 	@ManyToOne
 	@JoinColumn(name = "cargo_id_fk")
 	private Cargo cargo;
