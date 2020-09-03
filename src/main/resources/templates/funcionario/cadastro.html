@@ -101,9 +101,9 @@
 	                    <div class="form-group col-md-6">
 	                        <label for="numero">Número</label>
 	                        <input type="text" class="form-control" id="numero" th:field="*{endereco.numero}"
-	                        	   th:classappend="${#fields.hasErrors('endereco.logradouro')} ? 'is-invalid'"/>
+	                        	   th:classappend="${#fields.hasErrors('endereco.numero')} ? 'is-invalid'"/>
 	                        <div class="invalid-feedback">
-								<span th:errors="*{endereco.logradouro}"></span>
+								<span th:errors="*{endereco.numero}"></span>
 	                        </div>
 	                    </div>
 	                    <div class="form-group col-md-6">

@@ -42,7 +42,7 @@ public class Endereco extends AbstractEntity<Long> {
 	@Column(nullable = false, length = 5)
 	private Integer numero;
 	
-	@Size(min = 3, max = 255)
+	@Size(max = 255)
 	private String complemento;
 
 	public String getLogradouro() {
