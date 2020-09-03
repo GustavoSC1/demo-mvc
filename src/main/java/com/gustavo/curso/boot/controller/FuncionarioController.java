@@ -10,7 +10,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +25,7 @@ import com.gustavo.curso.boot.domain.Funcionario;
 import com.gustavo.curso.boot.domain.UF;
 import com.gustavo.curso.boot.service.CargoService;
 import com.gustavo.curso.boot.service.FuncionarioService;
+import com.gustavo.curso.boot.validator.FuncionarioValidator;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -32,6 +35,12 @@ public class FuncionarioController {
 	private FuncionarioService funcionarioService;
 	@Autowired
 	private CargoService cargoService;
+	
+	//Vai fazer com que esse método seja o primeiro a ser executado na classe
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.addValidators(new FuncionarioValidator());
+	}
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Funcionario funcionario) {
