@@ -24,20 +24,20 @@ public class DepartamentoController {
 	
 	@GetMapping("/cadastrar")
 	public String cadastrar(Departamento departamento) {
-		return "/departamento/cadastro";
+		return "departamento/cadastro";
 	}
 	
 	@GetMapping("/listar")
 	public String listar(ModelMap model) {
 		model.addAttribute("departamentos", service.buscarTodos());
-		return "/departamento/lista";
+		return "departamento/lista";
 	}
 	
 	@PostMapping("/salvar")
 	public String salvar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {
 		
 		if(result.hasErrors()) {
-			return "/departamento/cadastro";
+			return "departamento/cadastro";
 		}
 		
 		service.salvar(departamento);
@@ -48,14 +48,14 @@ public class DepartamentoController {
 	@GetMapping("/editar/{id}")
 	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
 		model.addAttribute("departamento", service.buscarPorId(id));
-		return "/departamento/cadastro";
+		return "departamento/cadastro";
 	}
 	
 	@PostMapping("/editar")
 	public String editar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {
 		
 		if(result.hasErrors()) {
-			return "/departamento/cadastro";
+			return "departamento/cadastro";
 		}
 		
 		service.editar(departamento);
