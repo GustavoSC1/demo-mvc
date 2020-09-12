@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gustavo.curso.boot.dao.CargoDao;
 import com.gustavo.curso.boot.domain.Cargo;
+import com.gustavo.curso.boot.util.PaginacaoUtil;
 
 @Service 
 //Esse comportamento vai fazer com que não seja aberta uma transação quando o método de consulta 
@@ -53,6 +54,11 @@ public class CargoServiceImpl implements CargoService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public PaginacaoUtil<Cargo> buscarPorPagina(int pagina) {		
+		return dao.buscaPaginada(pagina);
 	}
 	
 }

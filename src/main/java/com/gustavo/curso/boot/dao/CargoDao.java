@@ -3,6 +3,7 @@ package com.gustavo.curso.boot.dao;
 import java.util.List;
 
 import com.gustavo.curso.boot.domain.Cargo;
+import com.gustavo.curso.boot.util.PaginacaoUtil;
 
 public interface CargoDao {
 	
@@ -15,5 +16,7 @@ public interface CargoDao {
 	Cargo findById(Long id);
 	
 	List<Cargo> findAll();
+	
+	PaginacaoUtil<Cargo> buscaPaginada(int pagina);
 
 }
