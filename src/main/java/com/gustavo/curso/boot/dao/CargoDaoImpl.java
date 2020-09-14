@@ -30,7 +30,7 @@ public class CargoDaoImpl extends AbstractDao<Cargo, Long> implements CargoDao {
 	
 	public long count() {
 		return getEntityManager()
-				.createNamedQuery("select count(*) from Cargo", Long.class)
+				.createQuery("select count(*) from Cargo", Long.class)
 				.getSingleResult();
 	}
 
